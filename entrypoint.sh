@@ -13,13 +13,7 @@ if [ -z "$ACCOUNT_ID" ]; then
   exit 1
 fi
 
-# Set mc configuration
-if [ -z "$AWS_SESSION_TOKEN" ]; then
-  echo "This is for Cloudflare R2 buckets only."
-  exit 1
-else
-  export MC_HOST_s3=https://${ACCESS_KEY_ID}:${SECRET_ACCESS_KEY}@${ACCOUNT_ID}.r2.cloudflarestorage.com
-fi
+export MC_HOST_s3=https://${ACCESS_KEY_ID}:${SECRET_ACCESS_KEY}@${ACCOUNT_ID}.r2.cloudflarestorage.com
 
 # Execute mc mirror
 mc mirror $* "." "s3/$BUCKET_NAME"
