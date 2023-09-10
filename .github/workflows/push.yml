@@ -12,8 +12,8 @@ jobs:
         uses: ./
         env:
           ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          MIRROR_TARGET: ${{ secrets.MIRROR_TARGET }}
+          MIRROR_TARGET: ${{ secrets.BUCKET_NAME }}
           SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-          STORAGE_SERVICE_URL: ${{ secrets.STORAGE_SERVICE_URL }}
+          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         with:
           args: --overwrite --remove
