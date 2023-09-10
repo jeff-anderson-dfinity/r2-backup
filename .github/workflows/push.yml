@@ -1,4 +1,4 @@
-name: Mirror repo to S3
+name: Mirror repo to R2
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: S3 Backup
+      - name: R2 Backup
         uses: ./
         env:
           ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
