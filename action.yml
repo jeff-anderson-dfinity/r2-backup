@@ -1,9 +1,9 @@
-name: 'S3 Backup'
-author: 'Peter Evans'
-description: 'Mirror a repository to S3 compatible object storage'
+name: 'R2 Backup'
+author: 'Jose Moran Urena'
+description: 'Mirror a repository to a Cloudflare R2 bucket'
 runs:
   using: 'docker'
   image: 'Dockerfile'
 branding:
   icon: 'upload-cloud'  
-  color: 'yellow'
+  color: 'orange'
