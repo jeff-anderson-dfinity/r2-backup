@@ -1,4 +1,4 @@
-FROM minio/mc:RELEASE.2022-05-04T06-07-55Z
+FROM minio/mc:RELEASE.2023-09-07T22-48-55Z
 
 LABEL maintainer="Jose Moran Urena <jose@josemoranurena.tech>"
 LABEL repository="https://github.com/JoseMoranUrena523/r2-backup"
