@@ -1,24 +1,25 @@
 #!/bin/sh -l
 set -euo pipefail
 
-STORAGE_SERVICE_ALIAS=${STORAGE_SERVICE_ALIAS:="s3"}
-STORAGE_SERVICE_URL=${STORAGE_SERVICE_URL:="https://s3.amazonaws.com"}
-AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:=""}
-MIRROR_SOURCE=${MIRROR_SOURCE:="."}
-AWS_REGION=${AWS_REGION:=""}
-
 # Check mirror target is set
-if [ -z "$MIRROR_TARGET" ]; then
-  echo "MIRROR_TARGET is not set"
+if [ -z "$BUCKET_NAME" ]; then
+  echo "BUCKET_NAME is not set."
+  exit 1
+fi
+
+# Check if account ID is set
+if [ -z "$ACCOUNT_ID" ]; then
+  echo "ACCOUNT_ID is not set."
   exit 1
 fi
 
 # Set mc configuration
 if [ -z "$AWS_SESSION_TOKEN" ]; then
-  mc alias set "$STORAGE_SERVICE_ALIAS" "$STORAGE_SERVICE_URL" "$ACCESS_KEY_ID" "$SECRET_ACCESS_KEY"
+  echo "This is for Cloudflare R2 buckets only."
+  exit 1
 else
-  export MC_HOST_${STORAGE_SERVICE_ALIAS}=https://${ACCESS_KEY_ID}:${SECRET_ACCESS_KEY}:${AWS_SESSION_TOKEN}@s3.${AWS_REGION}.amazonaws.com
+  export MC_HOST_s3=https://${ACCESS_KEY_ID}:${SECRET_ACCESS_KEY}@${ACCOUNT_ID}.r2.cloudflarestorage.com
 fi
 
 # Execute mc mirror
-mc mirror $* "$MIRROR_SOURCE" "$STORAGE_SERVICE_ALIAS/$MIRROR_TARGET"
+mc mirror $* "." "s3/$BUCKET_NAME"
