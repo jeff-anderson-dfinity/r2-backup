@@ -1,13 +1,13 @@
-name: Mirror repo to R2
+name: R2 Backup
 on:
   push:
     branches:
       - master
 jobs:
-  s3Backup:
+  r2Backup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: R2 Backup
         uses: ./
         env:
