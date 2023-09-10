@@ -9,7 +9,7 @@ This example will mirror your repository to an R2 bucket called `repo-backup-buc
 
 ```yml
     - name: R2 Backup
-      uses: JoseMoranUrena523/r2-backup@v1
+      uses: JoseMoranUrena523/r2-backup@v1.0.0
       env:
         ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
         SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: R2 Backup
-        uses: JoseMoranUrena523/r2-backup@v0.0.2-alpha
+        uses: JoseMoranUrena523/r2-backup@v1.0.0
         env:
           ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
