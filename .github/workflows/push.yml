@@ -1,19 +1,24 @@
 name: R2 Backup
+
 on:
-  push:
+  pull_request:
     branches:
-      - master
+      - dev
+      - main
+    types:
+      - closed
+
 jobs:
-  r2Backup:
+  r2-backup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: R2 Backup
         uses: ./
         env:
-          ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          MIRROR_TARGET: ${{ secrets.BUCKET_NAME }}
-          SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+          ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          BUCKET_NAME: ${{ vars.R2_BUCKET }}
         with:
           args: --overwrite --remove
