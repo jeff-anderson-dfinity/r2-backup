@@ -11,6 +11,7 @@ on:
 jobs:
   r2-backup:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - uses: actions/checkout@v2
       - name: R2 Backup
